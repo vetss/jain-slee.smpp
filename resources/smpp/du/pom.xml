@@ -37,25 +37,30 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mobicents.tools</groupId>
+				<artifactId>maven-du-plugin</artifactId>
+				<version>${maven.du.plugin.wildfly.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>copy-dependencies</goal>
+							<goal>generate-descriptor</goal>
+							<goal>generate-ant-management-script</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 	<profiles>
 		<profile>
-			<id>release-jboss5</id>
+			<id>deploy-module-jboss</id>
 			<build>
 				<plugins>
-					<plugin>
-						<groupId>org.mobicents.tools</groupId>
-						<artifactId>maven-du-plugin</artifactId>
-                        <version>${maven.du.plugin.jboss5.version}</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>copy-dependencies</goal>
-									<goal>generate-descriptor</goal>
-									<goal>generate-ant-management-script</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<executions>
@@ -89,23 +94,9 @@
 			</build>
 		</profile>
 		<profile>
-			<id>release-wildfly</id>
+			<id>deploy-module-wildfly</id>
 			<build>
 				<plugins>
-					<plugin>
-						<groupId>org.mobicents.tools</groupId>
-						<artifactId>maven-du-plugin</artifactId>
-						<version>${maven.du.plugin.wildfly.version}</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>copy-dependencies</goal>
-									<goal>generate-descriptor</goal>
-									<goal>generate-ant-management-script</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<executions>
